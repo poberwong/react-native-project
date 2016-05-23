@@ -1,11 +1,11 @@
-import codePush from "react-native-code-push";
-import React, { Component } from 'react';
+import codePush from 'react-native-code-push'
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View
-} from 'react-native';
+} from 'react-native'
 
 class GraduationProject extends Component {
   componentDidMount () {
@@ -21,7 +21,7 @@ class GraduationProject extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -34,7 +34,7 @@ class GraduationProject extends Component {
           current version of code: 0.0.2
         </Text>
       </View>
-    );
+    )
   }
 }
 
@@ -43,18 +43,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 10
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
-  },
-});
+    marginBottom: 5
+  }
+})
 
-AppRegistry.registerComponent('GraduationProject', () => GraduationProject);
+AppRegistry.registerComponent('GraduationProject', () => GraduationProject)
