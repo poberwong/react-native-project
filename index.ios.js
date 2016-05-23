@@ -1,9 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
+import codePush from "react-native-code-push";
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -13,6 +8,19 @@ import {
 } from 'react-native';
 
 class GraduationProject extends Component {
+  componentDidMount () {
+    codePush.sync({
+      deploymentKey: 'UNDqQ6nfgrk2VZEIQdc8vVITbmmeVJ34mxQfZ',
+      updateDialog: {
+        optionalIgnoreButtonLabel: '稍后',
+        optionalInstallButtonLabel: '后台更新',
+        optionalUpdateMessage: 'Bundle有版本更新，是否下载？',
+        title: '更新提示'
+      },
+      installMode: codePush.InstallMode.ON_NEXT_RESTART
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -23,8 +31,7 @@ class GraduationProject extends Component {
           To get started, edit index.ios.js
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          current version of code: 0.0.2
         </Text>
       </View>
     );
