@@ -55,12 +55,11 @@ class GraduationProject extends Component {
     r: 0,
     g: 0,
     b: 0,
-    a: 0
+    a: 1
   };
 
   componentDidMount () {
     codePush.sync({
-      deploymentKey: 'UNDqQ6nfgrk2VZEIQdc8vVITbmmeVJ34mxQfZ',
       updateDialog: {
         optionalIgnoreButtonLabel: '稍后',
         optionalInstallButtonLabel: '后台更新',
