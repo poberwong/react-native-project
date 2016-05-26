@@ -62,8 +62,11 @@ class GraduationProject extends Component {
     codePush.sync({
       updateDialog: {
         optionalIgnoreButtonLabel: '稍后',
-        optionalInstallButtonLabel: '后台更新',
-        optionalUpdateMessage: 'Bundle有版本更新，是否下载？',
+        optionalInstallButtonLabel: '更新',
+        mandatoryUpdateMessage: '',
+        optionalUpdateMessage: '',
+        appendReleaseDescription: true,
+        descriptionPrefix: '有新版本，是否下载？\n\n ==更新内容==\n',
         title: '更新提示'
       },
       installMode: codePush.InstallMode.IMMEDIATE
