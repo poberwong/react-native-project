@@ -64,7 +64,6 @@ export default class extends React.Component {
       <View
         onLayout={event => {
           this.setState({width: event.nativeEvent.layout.width})
-          console.log('currentWidth: ', event.nativeEvent.layout.width)
         }}
         style={[styles.background, this.props.backgroundStyle, this.props.style]}>
         <Animated.View style={[styles.fill, this.props.fillStyle, { width: fillWidth }]} />

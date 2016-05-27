@@ -48,7 +48,7 @@ class GraduationProject extends Component {
           backHidden
         />
         <ProgressBar
-          style={{height: 2, backgroundColor: 'grey'}}
+          style={{height: 2, backgroundColor: 'grey', position: 'absolute', top: 0, right: 0, left: 0}}
           fillStyle={{backgroundColor: 'red'}}
           progress={this.state.progress} />
         <Palette currentPercent={this.state.progress} />
