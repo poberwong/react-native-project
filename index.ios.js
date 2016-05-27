@@ -2,6 +2,7 @@ import codePush from 'react-native-code-push'
 import React, { Component } from 'react'
 import Palette from './Palette'
 import ProgressBar from './ProgressBar'
+import NavigationBar from 'react-native-navigationbar'
 import {
   AppRegistry,
   StyleSheet,
@@ -42,6 +43,10 @@ class GraduationProject extends Component {
   render () {
     return (
       <View style={styles.container}>
+        <NavigationBar
+          title='Palette'
+          backHidden
+        />
         <ProgressBar
           style={{height: 2, backgroundColor: 'grey'}}
           fillStyle={{backgroundColor: 'red'}}

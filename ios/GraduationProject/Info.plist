@@ -39,7 +39,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>CodePushDeploymentKey</key>
-	<string>UNDqQ6nfgrk2VZEIQdc8vVITbmmeVJ34mxQfZ</string>
+	<string>h2RhBsGUwYtxPYM2CYd65j28KbukVJ34mxQfZ</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
