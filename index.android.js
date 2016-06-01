@@ -1,51 +1,66 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-
-import React, { Component } from 'react';
+import codePush from 'react-native-code-push'
+import React, { Component } from 'react'
+import Palette from './Palette'
+import ProgressBar from './ProgressBar'
+import NavigationBar from 'react-native-navigationbar'
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View
-} from 'react-native';
+} from 'react-native'
 
 class GraduationProject extends Component {
-  render() {
+  state = {
+    progress: 0,
+    modalVisible: false
+  }
+
+  /*
+   * IMMEDIATE(0) // 更新完毕，立即生效
+   * ON_NEXT_RESTART(1) // 下次启动生效
+   * ON_NEXT_RESUME(2) // 切到后台，重新回来生效
+   */
+  componentDidMount () {
+    codePush.sync({
+      updateDialog: {
+        optionalIgnoreButtonLabel: '稍后',
+        optionalInstallButtonLabel: '更新',
+        mandatoryUpdateMessage: '',
+        optionalUpdateMessage: '',
+        appendReleaseDescription: true,
+        descriptionPrefix: '有新版本，是否下载？\n\n ==更新内容==\n',
+        title: '更新提示'
+      },
+      installMode: codePush.InstallMode.IMMEDIATE
+    }, null,
+    progress => {
+      this.setState({
+        progress: (progress.receivedBytes / progress.totalBytes)
+      })
+    })
+  }
+
+  render () {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
+        <NavigationBar
+          title='Palette'
+          backHidden
+        />
+        <ProgressBar
+          style={{height: 2, backgroundColor: 'grey', position: 'absolute', top: 0, right: 0, left: 0}}
+          fillStyle={{backgroundColor: 'red'}}
+          progress={this.state.progress} />
+        <Palette currentPercent={this.state.progress} />
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    flex: 1
+  }
+})
 
-AppRegistry.registerComponent('GraduationProject', () => GraduationProject);
+AppRegistry.registerComponent('GraduationProject', () => GraduationProject)
