@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+
 import {
   StyleSheet,
   Text,
   Slider,
+  Platform,
+  TouchableOpacity,
   View
 } from 'react-native'
+const ToastAndroidDemo = Platform.OS === 'android' ? require('./ToastAndroidDemo') : null
 
 class SliderOriginal extends Component {
   static propTypes = {
@@ -64,10 +68,11 @@ export default class extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.content}>
-          <View style={[styles.circle,
-            {backgroundColor: `rgba(${this.state.r},${this.state.g},${this.state.b},${this.state.a})`}]}>
+          <TouchableOpacity style={[styles.circle,
+            {backgroundColor: `rgba(${this.state.r},${this.state.g},${this.state.b},${this.state.a})`}]}
+            onPress={this.showToast.bind(this)}>
             <Text style={styles.title}>{'Color Palette\n' + currentPercent}</Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={styles.palette}>
           <SliderOriginal label='R'
@@ -89,6 +94,10 @@ export default class extends Component {
         </View>
       </View>
     )
+  }
+
+  showToast () {
+    ToastAndroidDemo && ToastAndroidDemo.show('HelloWorld', ToastAndroidDemo.LONG)
   }
 }
 

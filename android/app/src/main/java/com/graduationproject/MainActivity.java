@@ -31,12 +31,14 @@ public class MainActivity extends ReactActivity {
     /**
      * A list of packages used by the app. If the app uses additional views
      * or modules besides the default ones, add more packages here.
+     * 添加Native库的Packager
      */
     @Override
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new CodePush(null, this, BuildConfig.DEBUG)
+            new CodePush(null, this, BuildConfig.DEBUG),
+            new ToastAndroidDemoPackage()
         );
     }
 }
