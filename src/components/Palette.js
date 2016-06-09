@@ -103,7 +103,8 @@ export default class extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'red'
   },
   content: {
     flex: 2,
