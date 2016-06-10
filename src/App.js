@@ -1,14 +1,15 @@
 import codePush from 'react-native-code-push'
-import React, { Component } from 'react'
-import Palette from './components/Palette'
 import ProgressBar from './components/ProgressBar'
-import NavigationBar from 'react-native-navigationbar'
+import React, { Component } from 'react'
+import Home from './components/Home'
 import {
   StyleSheet,
-  View
+  View,
+  Navigator
 } from 'react-native'
 
 export default class extends Component {
+
   state = {
     progress: 0,
     modalVisible: false
@@ -41,16 +42,19 @@ export default class extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <NavigationBar
-          title='Palette'
-          backHidden
-        />
+      <View style={{flex: 1}}>
+        <Navigator style = {styles.container}
+          initialRoute={{
+            component: Home
+          }}
+          renderScene={(route, navigator) => { // 用来渲染navigator栈顶的route里的component页面
+            // route={component: xxx, name: xxx, ...}， navigator.......route 用来在对应界面获取其他键值
+            return <route.component navigator={navigator} {...route} {...route.passProps}/>// {...route.passProps}即就是把passProps里的键值对全部以给属性赋值的方式展开 如：test={10}
+          }}/>
         <ProgressBar
           style={{height: 2, backgroundColor: 'grey', position: 'absolute', top: 0, right: 0, left: 0}}
           fillStyle={{backgroundColor: 'red'}}
           progress={this.state.progress} />
-        <Palette currentPercent={this.state.progress} />
       </View>
     )
   }

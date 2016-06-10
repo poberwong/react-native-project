@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import NavBar from 'react-native-navigationbar'
 import {
   StyleSheet,
   Text,
@@ -67,6 +67,10 @@ export default class extends Component {
     let currentPercent = (this.props.currentPercent * 100).toFixed() + '%'
     return (
       <View style={styles.container}>
+        <NavBar
+          title='新建'
+          backFunc={() => this.props.navigator.pop()}
+        />
         <View style={styles.content}>
           <TouchableOpacity style={[styles.circle,
             {backgroundColor: `rgba(${this.state.r},${this.state.g},${this.state.b},${this.state.a})`}]}
@@ -103,8 +107,7 @@ export default class extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'red'
+    flex: 1
   },
   content: {
     flex: 2,
