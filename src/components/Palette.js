@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import NavBar from 'react-native-navigationbar'
+import {add} from '../reducers/localStorageReducer'
+import {connect} from 'react-redux'
 import {
   StyleSheet,
   Text,
@@ -46,7 +48,7 @@ class SliderOriginal extends Component {
   }
 }
 
-export default class extends Component {
+class Palette extends Component {
   // r g b: 0-255, a: 0-1
   state = {
     r: 0,
@@ -69,13 +71,14 @@ export default class extends Component {
       <View style={styles.container}>
         <NavBar
           title='新建'
+          actionName='Save'
+          actionFunc={() => this.saveItem()}
           backFunc={() => this.props.navigator.pop()}
         />
         <View style={styles.content}>
           <TouchableOpacity style={[styles.circle,
             {backgroundColor: `rgba(${this.state.r},${this.state.g},${this.state.b},${this.state.a})`}]}
             onPress={this.showToast.bind(this)}>
-            <Text style={styles.title}>{'Color Palette\n' + currentPercent}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.palette}>
@@ -103,11 +106,31 @@ export default class extends Component {
   showToast () {
     ToastAndroidDemo && ToastAndroidDemo.show('HelloWorld', ToastAndroidDemo.LONG)
   }
+
+  saveItem () {
+    const item = {
+      id: Date.now(),
+      r: this.state.r.toFixed(),
+      g: this.state.g.toFixed(),
+      b: this.state.b.toFixed(),
+      a: this.state.a.toFixed(2)
+    }
+    storage.save({
+      key: 'data',
+      id: item.id,
+      rawData: item
+    })
+    .then(() => {
+      this.props.dispatch(add(item))
+      console.log('then:', this.props.items)
+    })
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'white'
   },
   content: {
     flex: 2,
@@ -142,3 +165,4 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
+export default connect(state => ({items: state.items}))(Palette)
