@@ -44,7 +44,7 @@ class Home extends React.Component {
 
   _renderRows () {
     return this.props.items.map((item, index)=> 
-      (<TouchableOpacity key={index} style={{height: 45, justifyContent: 'center'}}
+      (<TouchableOpacity key={index} style={{height: 45, justifyContent: 'center', paddingLeft: 10}}
         onPress={() => this.setState({backgroundColor: `rgba(${item.r},${item.g},${item.b},${item.a})`})}>
         <Text>time: {item.id},  r: {item.r},  g: {item.g},  b: {item.b},  a: {item.a}</Text>
       </TouchableOpacity>)
