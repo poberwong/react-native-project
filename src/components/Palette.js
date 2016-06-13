@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NavBar from 'react-native-navigationbar'
 import {add} from '../reducers/localStorageReducer'
 import {connect} from 'react-redux'
+import { MessageBarManager } from 'react-native-message-bar'
 import {
   StyleSheet,
   Text,
@@ -122,7 +123,12 @@ class Palette extends Component {
     })
     .then(() => {
       this.props.dispatch(add(item))
-      console.log('then:', this.props.items)
+      MessageBarManager.showAlert({
+        message: '保存成功',
+        alertType: 'success',
+        duration: 1500,
+        viewTopInset: 24
+      })
     })
   }
 }

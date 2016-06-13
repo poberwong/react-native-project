@@ -6,6 +6,8 @@ import Home from './components/Home'
 import { Provider } from 'react-redux'
 import {createStore} from 'redux'
 import reducer from './reducers/localStorageReducer'
+var MessageBarAlert = require('react-native-message-bar').MessageBar;
+var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 let stores = createStore(reducer)
 import {
   StyleSheet,
@@ -30,6 +32,7 @@ export default class extends Component {
    * ON_NEXT_RESUME(2) // 切到后台，重新回来生效
    */
   componentDidMount () {
+    MessageBarManager.registerMessageBar(this.refs.alert);
     codePush.sync({
       updateDialog: {
         optionalIgnoreButtonLabel: '稍后',
@@ -49,6 +52,11 @@ export default class extends Component {
     })
   }
 
+  componentWillUnmount() {
+  // Remove the alert located on this master page from the manager
+    MessageBarManager.unregisterMessageBar()
+  }
+
   render () {
     return (
       <Provider store={stores}>
@@ -65,6 +73,7 @@ export default class extends Component {
             style={{height: 2, backgroundColor: 'grey', position: 'absolute', top: 0, right: 0, left: 0}}
             fillStyle={{backgroundColor: 'red'}}
             progress={this.state.progress} />
+          <MessageBarAlert ref="alert" style={{position: 'absolute', top: 0, right: 0, left: 0}}/>
         </View>
       </Provider>
     )

@@ -10,6 +10,7 @@
     "react-native": "^0.25.1",
     "react-native-code-push": "^1.11.0-beta",
     "react-native-imagefooter-listview": "^0.1.7",
+    "react-native-message-bar": "^1.6.0",
     "react-native-navigationbar": "^0.3.2",
     "react-native-storage": "^0.1.0",
     "react-native-vector-icons": "^2.0.3",
